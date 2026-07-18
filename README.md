@@ -1,5 +1,13 @@
 # eIntellectual — Role-Based eLearning Platform
 
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-3.2-092E20?logo=django&logoColor=white)
+![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4-7952B3?logo=bootstrap&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
+
+
 A modular learning management system built with Django. The application supports separate student and teacher workflows, course and resource management, enrollment, user profiles, seeded demonstration data, and an experimental WebSocket chat module.
 
 > **Project status:** Academic software-engineering project. The primary learning-management workflows are implemented and runnable locally. The chat module was started as an experimental feature but was not completed.
