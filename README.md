@@ -306,4 +306,4 @@ The project was developed for the University of London Advanced Web Development 
 
 ## License
 
-This repository is presented for educational and portfolio purposes. 
+This repository is presented for educational and portfolio purposes. This project is available under the MIT License.
