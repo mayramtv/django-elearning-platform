@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    {% for course in courses %}
+    <div class="row d-flex mt-5">
+        <div class="col-sm-2 media">
+            <a class="align-self-center" href="../course/{{course.pk}}/"><img class="img-thumbnail" src="/images/{{course.image}}"  alt="{{course.name}}"></a>
+        </div>
+        <div class="col">
+            <h4>{{course.name.title}}</h4>
+            <p>{{course.code.upper}}</p>
+            <p>{{course.category.title}}</p>
+            <h5>Created By {{course.teacher.name}}</h5>
+            <p>{{course.description}}</p>
+        </div>
+    </div>
+    {%  endfor %}
+</div>
+{% endblock %}

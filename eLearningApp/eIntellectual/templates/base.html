@@ -1,0 +1,56 @@
+<!-- Code Reference -->
+<!-- https://getbootstrap.com/docs/4.0/components/dropdowns/ for dropdown categories menu -->
+
+
+{% include "./header.html" %} 
+{% include "./title.html" %}
+
+<main class="container-fluid ">
+    <!-- <h1>{{courses_by_category.items}}</h1> -->
+    <!-- <h3>{{categories}}</h3> -->
+    
+    <div class="row">
+        <div class="col-sm-2 p-3" id="leftColumn">
+            {% for category, vals in courses_by_category.items %}
+            <div class="dropdown">
+                <!-- category -->
+                <button class="btn  dropdown-toggle pt-t5" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{category.title}}
+                </button>
+                <!-- list of courses for category -->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for course in vals %}
+                        <a class="dropdown-item" href="/course/{{course.pk}}">{{course.name.title}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="col-sm-8 border bg-light p-5" id="content">
+            {% block content %} Content to be rendered {% endblock %}
+        </div>
+
+        <div class="col-sm-2 p-5" id="rightcolumn">
+            <div class="row">
+                <h5>Information</h5>
+                <div class="w-100 ">
+                    <p>Courses Available: {{courses_count}}</p>
+                    <p>Students Enrolled: {{students_count}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <h5>Top Courses</h5>
+                <div class="list-group-unstyled">
+                    {% for course in top_courses %}
+                    <a class="media m-3" href="/course/{{course.pk}}">
+                        <img class="img-thumbnail" src="/images/{{course.image}}" alt="{{course.name}}">
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include "./footer.html" %}

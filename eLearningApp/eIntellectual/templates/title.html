@@ -1,0 +1,90 @@
+
+{% load bootstrap4 %}
+
+<nav class="navbar navbar-expand-lg bg-dark bg-body-tertiary" >
+    <div class="container-fluid m-0">
+        <a class="navbar-brand p-0 text-light font-weight-bold" href="/">
+            <img src="/images/app_images/Logo.png" alt="Logo" width="100" height="auto" class="d-inline-block alig-text-top">
+            eIntellectual
+        </a>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <!-- Code Reference https://getbootstrap.com/docs/5.3/components/navbar/ -->
+            <form class="d-flex" action="{% url 'search_results' %}" method="get" role="search">
+                <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            {% if user.is_authenticated %}
+                {% if user.is_student %}
+                    <a class="nav-link text-light font-weight-bold" href="/student/home/{{ user.student.pk }}">{{user.username.title}}</a>
+                    <a class="nav-link text-light" href="/student/logout">Logout</a>
+                {% elif user.is_teacher %}
+                    <a class="nav-link text-light font-weight-bold" href="/teacher/home/{{ user.teacher.pk }}">{{user.username.title}}</a>
+                    <a class="nav-link text-light" href="/teacher/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link text-light font-weight-bold" href="/">{{user.username.title}}</a>
+                    <a class="nav-link text-light" href="admin/logout">Logout</a>
+                {% endif %}
+            {% else %}
+                <div class="dropdown">
+                    <!-- category -->
+                    <button class="btn  dropdown-toggle text-light font-weight-bold" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Login
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link" href="/student/login">Student Login</a>
+                        <a class="nav-link" href="/teacher/login">Teacher Login</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <!-- category -->
+                    <button class="btn  dropdown-toggle text-light font-weight-bold" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Register
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="nav-link" href="/student/register">Student Register</a>
+                        <a class="nav-link" href="/teacher/register">Teacher Register</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg static-top navbar-dark bg-dark pl-3">
+    <a class="nav-brand text-light font-weight-bold"  href="/">Home</a>
+    <!-- Code Reference https://getbootstrap.com/docs/4.0/components/navbar/ -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">  
+        <ul class="navbar-nav me-auto" >
+            {% if user.is_student %}
+            <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Student</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/student/home/{{ user.student.pk }}">Student Home Page</a>
+                    <a class="dropdown-item" href="/student/profile">Profile</a>
+                    <a class="dropdown-item" href="/student/enrollments">My Enrollments</a>
+                </div>
+            </li>
+            {% elif user.is_teacher %}
+            <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Teacher</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/teacher/home/{{ user.teacher.pk }}">Teacher's Home Page</a>
+                    <a class="dropdown-item" href="/teacher/profile">Profile</a>
+                    <a class="dropdown-item" href="/teacher/classroom">My Classroom Courses</a>
+                    <a class="dropdown-item" href="/course/create">Create Course</a>
+                    <a class="dropdown-item" href="/teacher/students">My Students</a>
+                </div>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Chat</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/courses">Courses</a>
+            </li>
+        </ul>
+    </div>
+</nav>

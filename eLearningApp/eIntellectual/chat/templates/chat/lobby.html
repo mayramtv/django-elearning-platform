@@ -1,0 +1,28 @@
+<!-- # The provenance of the following code is from:  
+    # University of London Advance Web Development module
+    # Lectures and Labs presented by Dr Daniel Buchan
+     -->
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <h3>Chatrooms:</h3>
+    <input id="room-name-input" type="text" size="100"><br>
+    <input id="room-name-submit" type="button" value="Enter">
+    <script>
+        // on focus or pressing key gets input
+        document.querySelector('#room-name-input').focus();
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // select enter
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            var room_name = document.querySelector('#room-name-input').value;
+            window.location.pathname = '/chatroom/' + room_name + '/';
+        };
+    </script>
+</div>
+{% endblock %}

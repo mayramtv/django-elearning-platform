@@ -1,0 +1,72 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %} 
+
+<div class="container">
+    <!-- Displays information about the course -->
+    <div class="row d-flex mt-5">
+        <div class="col-sm-3 media">
+            <a class="align-self-top"  href="../../course/{{course.pk}}/"><img class="img-thumbnail" src="/images/{{course.image}}"  alt="{{course.name}}"></a>
+        </div>
+        <div class="col">
+            <h4>{{course.name.title}}</h4>
+            <p>{{course.code.upper}}</p>
+            <p>{{course.category.title}}</p>
+            <h5>Created By {{course.teacher.name}}</h5>
+            <p>{{course.description}}</p>
+            {% if user.is_teacher and owns_course %}
+                <a class="btn btn-primary" href="/course/{{course.pk}}/delete" role="button">Delete Course</a>
+            {% elif user.is_student %}
+                {% if not enrollment_exist %}
+                    <a class="btn btn-primary" href="/course/{{course.pk}}/enroll" role="button">Enroll</a>
+                {% elif enrollment_exist %}
+                    <a class="btn btn-danger" href="/enrollment/{{enrollment.pk}}/unenroll" role="button">Unenroll</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <!-- Displays information about the resources added -->
+    <div class="mt-5">
+        <div class="row">
+            <h5 class="col-10">Resources</h5>
+            <!-- to add a new resource -->
+            {% if user.is_teacher and owns_course %}
+                <a class="col-2 btn btn-primary" href="../../course/{{course.pk}}/add-resources/" role="button">Add</a>
+            {% endif %}
+        </div>
+        <div class="row">
+            <table class="table">
+                <tr>
+                    {% if enrollment_exist or owns_course%}
+                    <th scope="col">Code</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Description</th>
+                    {% else %}
+                    <th scope="col">Code</th>
+                    <th scope="col">Description</th>
+                    {% endif %}
+                </tr>
+            {% for resource in resources %}
+                <tr>
+                    {% if enrollment_exist or owns_course%}
+                    <th scope="row">{{resource.0.code.upper}}</th>
+                    <td><a href="/images/{{resource.0.content}}">{{resource.0.content}}</a></td>
+                    <td>{{resource.1.title}}</td>
+                    <td>{{resource.0.timestamp}}</td>
+                    <td>{{resource.0.text}}</td>
+                    {% else %}
+                    <th scope="row">{{resource.0.code.upper}}</th>
+                    <td>{{resource.0.text}}</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %} 
+

@@ -1,0 +1,27 @@
+<!-- Code Reference -->
+<!-- University of London Advance Web Development module -->
+<!-- Lectures and Labs presented by Dr Daniel Buchan -->
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div>
+    <h3>{{ user_type.title }} Registration Page</h3>
+    <!-- The provenance of the following code is from the bioweb app from the refernce mentioned above -->
+    {% if registered %}
+    <strong>
+        You have successfully registered as a {{user_type}}. Please Login <a href="/teacher/login/">Here</a>
+    </strong>
+    {% else %}
+    <!-- The provenance of the following code is from the bioweb app from the refernce mentioned above -->
+    <!-- Adds form with POST request method and send the data in multi format -->
+    <form id="teacher_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{teacher_form.as_p}}
+        {{teacher_profile_form.as_p}}
+        <input type="submit" name="submit" value="Register">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <h3>Student Profile: {{ student.name.title }} {{ student.last_name.title }}</h3>
+    <div class="row d-flex mt-5">
+        <div class="col-sm-3 media">
+            <a class="align-self-center" href="#"><img class="img-thumbnail" src="/images/{{student.photo}}" ></a>
+        </div>
+        <div class="col">
+            <h4>{{student.user_name.title}}</h4>
+            <h6>{{student.name.title}} {{student.last_name.title}} </h6>
+            <p>Student since: {{student.start_date.date}} </p>
+            <br>
+            <h6>{{student.email}}</h6>
+            <div class="mt-5">
+                <a class="btn btn-primary ml-4" href="/student/profile/update/{{student.pk}}" role="button">Update Profile</a>
+                <a class="btn btn-primary ml-4" href="/student/change-password" role="button">Change Password</a>
+                <a class="btn btn-danger ml-4" href="/delete-account/{{user.pk}}" role="button">Delete Account</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+
+<!-- Code Reference 
+    # University of London Advance Web Development module
+    # Lectures and Labs presented by Dr Daniel Buchan -->
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <h3>Delete Account:</h3>
+    <br>
+    <form id="account_delete" method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        <!-- {{ form.as_p }}  -->
+        <p>Are you sure you want to delete "{{ object }}" account?</p> 
+        <input class="col-2 btn btn-danger" type="submit" value="Delete Account"> 
+        {% if user.is_student %}
+            <a class="col-2 btn btn-outline-secondary ml-4" href="/student/profile" role="button">Cancel</a>
+        {% elif user.is_teacher %}
+            <a class="col-2 btn btn-outline-secondary ml-4" href="/teacher/profile" role="button">Cancel</a>
+        {% endif  %}
+    </form> 
+</div>
+
+{% endblock %}

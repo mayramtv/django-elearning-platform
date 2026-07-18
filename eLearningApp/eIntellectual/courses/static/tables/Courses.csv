@@ -1,0 +1,25 @@
+code,name,category,teacher,date_created,date_updated,description,image
+cs1001,introduction to python,computer science,TAMP121801,2019-03-27,2021-04-20,This course is for introduction to python in computer science,python0_img.jpg
+cs1002,intermediate python,computer science,TASY062705,2017-06-03,2023-11-09,This course is for intermediate python in computer science,python1_img.jpg
+cs1003,advance python,computer science,TASY062705,2022-07-26,2022-08-11,This course is for advance python in computer science,python2_img.jpg
+cs1011,introduction to javascript,computer science,TALR123193,2017-05-17,2022-03-14,This course is for introduction to javascript in computer science,javascript0_img.jpg
+cs1012,intermediate javascript,computer science,TAMT010700,2023-05-06,2024-08-08,This course is for intermediate javascript in computer science,javascript1_img.jpg
+cs1013,advance javascript,computer science,TACS082705,2017-12-06,2019-06-25,This course is for advance javascript in computer science,javascript2_img.jpg
+cs1021,introduction to web development,computer science,TATR101693,2022-08-23,2023-11-04,This course is for introduction to web development in computer science,web development0_img.jpg
+cs1022,intermediate web development,computer science,TAMT010700,2018-04-23,2024-07-02,This course is for intermediate web development in computer science,web development1_img.jpg
+cs1023,advance web development,computer science,TASY062705,2020-02-16,2020-06-26,This course is for advance web development in computer science,web development2_img.jpg
+el2001,introduction to writting,english language,TAMP121801,2019-10-06,2023-06-21,This course is for introduction to writting in english language,writting0_img.jpg
+el2002,intermediate writting,english language,TATR101693,2020-10-04,2023-08-24,This course is for intermediate writting in english language,writting1_img.jpg
+el2003,advance writting,english language,TAMP121801,2021-01-30,2023-07-27,This course is for advance writting in english language,writting2_img.jpg
+el2011,introduction to english,english language,TAMT010700,2019-08-24,2023-08-13,This course is for introduction to english in english language,english0_img.jpg
+el2012,intermediate english,english language,TACS082705,2018-03-25,2022-12-03,This course is for intermediate english in english language,english1_img.jpg
+el2013,advance english,english language,TAMP121801,2023-03-04,2024-05-26,This course is for advance english in english language,english2_img.jpg
+el2021,introduction to essay writting,english language,TASY062705,2018-01-20,2022-01-19,This course is for introduction to essay writting in english language,essay writting0_img.jpg
+el2022,intermediate essay writting,english language,TATR101693,2022-02-07,2024-07-23,This course is for intermediate essay writting in english language,essay writting1_img.jpg
+el2023,advance essay writting,english language,TASY062705,2021-06-04,2022-07-26,This course is for advance essay writting in english language,essay writting2_img.jpg
+bm3001,introduction to business analytics,business management,TAMP121801,2022-09-30,2023-05-29,This course is for introduction to business analytics in business management,business analytics0_img.jpg
+bm3002,intermediate business analytics,business management,TATR101693,2017-06-06,2019-10-07,This course is for intermediate business analytics in business management,business analytics1_img.jpg
+bm3003,advance business analytics,business management,TASY062705,2022-06-29,2022-07-22,This course is for advance business analytics in business management,business analytics2_img.jpg
+bm3011,introduction to statistics,business management,TACS082705,2023-04-24,2023-12-09,This course is for introduction to statistics in business management,statistics0_img.jpg
+bm3012,intermediate statistics,business management,TASY062705,2023-01-06,2023-11-18,This course is for intermediate statistics in business management,statistics1_img.jpg
+bm3013,advance statistics,business management,TASY062705,2020-12-26,2024-06-20,This course is for advance statistics in business management,statistics2_img.jpg

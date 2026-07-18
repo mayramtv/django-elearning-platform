@@ -1,0 +1,57 @@
+<!-- # The provenance of the following code is from:  
+    # University of London Advance Web Development module
+    # Lectures and Labs presented by Dr Daniel Buchan
+     -->
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <textarea id="chat-log" cols="100" rows="20">
+        {% for chat in chats %}
+        {{message.message}}
+        {% endfor %}
+    </textarea><br>
+    <input id="chat-message-input" type="text" size="100"><br>
+    <input id="chat-message-submit" type="button" value="Send">
+    {{ room_name|json_script:"room-name" }}
+
+    <script>
+        // const room_name = JSON.parse(document.getElementById('room-name').textContent);
+        const room_name = "{{ room_name }}";
+
+        // creates the websocket (url)
+        const chatSocket = new WebSocket('ws://'+ window.location.host+ '/ws/chatroom/'+room_name+ '/'
+        );
+        // when a message is received sends message to "e"
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            
+            // insert message to chat window
+            document.querySelector('#chat-log').value += (data.message + '\n');
+        };
+        // if message is 'close' throw error
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+        
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+        // when user submit passes chat to input
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            // send message to webserver
+            chatSocket.send(JSON.stringify({
+                'message': message,
+            }));
+            messageInputDom.value = '';
+        };
+    </script>
+
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<!-- The provenance of the following code block is from the following refernces:
+    University of London Advance Web Development module
+    Lectures and Labs presented by Dr Daniel Buchan -->
+    
+    {% extends "base.html" %} 
+    {% load bootstrap4 %}
+    
+    {% block content %} 
+    <div class="container m-5">
+        <h3>Course Unenrollment Confirmation:</h3>
+        <br>
+        <form method="post">
+            {% csrf_token %} 
+            <p>Are you sure you want to unenroll from "{{ enrollment.course.code.upper }}" course?</p> 
+            <input class="col-2 btn btn-primary"  type="submit" value="Confirm">
+            {% if user.is_student %} 
+                <a class="col-2 btn btn-outline-secondary ml-4" href="/student/enrollments" role="button">Cancel</a>
+            {% elif user.is_teacher %} 
+                <a class="col-2 btn btn-outline-secondary ml-4" href="/teacher/students" role="button">Cancel</a>
+            {% endif %}  
+            </form> 
+    </div>
+    {% endblock %}

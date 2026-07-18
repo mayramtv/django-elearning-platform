@@ -1,0 +1,28 @@
+
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <h4>Search Results:</h4>
+    <div>
+        <div class="col-sm-2 media">
+            <!-- <a class="align-self-center" href="../course/{{course.pk}}/"><img class="img-thumbnail" src="/images/{{course.image}}"  alt="{{course.name}}"></a> -->
+        </div>
+        <div class="col">
+            <div class="">
+                <h5>Students</h5>
+                {% for student in students_list  %}
+                <a class="p-3" href="/student/home/{{student.pk}}">{{student.name}} {{student.last_name}}</a><br>
+                {% endfor %}
+                <h5>Teachers</h5>
+                {% for teacher in teachers_list %}
+                <a class="p-3" href="/teacher/home/{{teacher.pk}}">{{teacher.name}} {{teacher.last_name}}</a><br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

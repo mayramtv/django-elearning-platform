@@ -1,0 +1,24 @@
+<!-- University of London Advance Web Development module -->
+<!-- Lectures and Labs presented by Dr Daniel Buchan -->
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div>
+    <h3>{{ user_type.title }} Login Page</h3>
+        <!-- The provenance of the following code is from the bioweb app from the refernce mentioned above -->
+        <!-- Adds form with POST request method and send the data in multi format -->
+        <form id="login_form"  action="{% url 'login_student' %}" method="post" >
+            {% csrf_token %}
+            Username
+            <input type="text" name="username" value="" size="50" /><br>
+            <br>
+            Password
+            <input type="password" name="password" value="" size="50" /><br>
+            <br>
+            <input type="submit" name="submit" value="Login">
+        </form>
+</div>
+
+{% endblock %}

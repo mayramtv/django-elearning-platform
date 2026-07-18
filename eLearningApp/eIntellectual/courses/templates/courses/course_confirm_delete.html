@@ -1,0 +1,19 @@
+<!-- The provenance of the following code block is from the following refernces:
+    University of London Advance Web Development module
+    Lectures and Labs presented by Dr Daniel Buchan -->
+    
+{% extends "base.html" %} 
+{% load bootstrap4 %}
+
+{% block content %} 
+<div class="container m-5">
+    <h4>Course Delete Confirmation:</h4>
+    <br>
+    <form method="post">
+        {% csrf_token %} 
+        <p>Are you sure you want to delete "{{ object }}"?</p> 
+        <input class="col-2 btn btn-primary" type="submit" value="Confirm"> 
+        <a class="col-2 btn btn-outline-secondary ml-4" href="/" role="button">Cancel</a>
+    </form> 
+</div>
+{% endblock %}

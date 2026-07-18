@@ -1,0 +1,69 @@
+<!-- Refernce code -->
+    <!-- https://getbootstrap.com/docs/4.0/components/card/ -->
+
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-3">
+    <h4>Teacher Home Page:</h4>
+    <div class="row d-flex p-3">
+        <div class="col-sm-2 media">
+            <a class="align-self-center" href="#">
+                <img class="img-thumbnail" src="/images/{{ teacher.photo }}" alt="{{ teacher.name }} {{ teacher.last_name }}" width="150" height="150" style="object-fit: cover;">
+            </a>
+        </div>
+        <div class="col">
+            <h4>{{teacher.user_name.title}}</h4>
+            <h6>{{teacher.name.title}} {{teacher.last_name.title}} </h6>
+            <p>Teacher since: {{teacher.start_date.date}} </p>
+            <br>
+            <h6>{{teacher.email}}</h6>
+            <p>Number of courses in my classroom: <a href="/teacher/classroom">{{number_courses}} courses</a></p>
+        </div>
+    </div>
+    <div class="p-3 bg-white">
+        <h5>Status:</h5>
+        <div class=" p-3 ">
+            {% if own_status %}
+            <form class="form-inline justify-content-around" id="teacherStatus_form" method="post">
+                {% csrf_token %}
+                {{status_form.as_p}}
+                <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+            </form>
+            {% endif %}
+            <table class="table">
+                <tr>
+                    <th>Content</th>
+                    <th>Timestamp</th>
+                </tr>
+                {% for status in status_list %}
+                <tr>
+                    <td class="col-8">{{status.content}}</td>
+                    <td>{{status.timestamp}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class=" m-3">
+        <h5>Recent Courses:</h5>
+        <!-- the following code is from the refernce mentioned above -->
+        <div class="row justify-content-around">
+            
+            {% for course in classroom_courses %}
+            <div class="card w-25 m-1" >
+                <img class="card-img-top" src="/images/{{course.image}}" alt="{{course.name.title}} imahe">
+                <div class="card-body">
+                  <h5 class="card-title">{{course.code.upper}}</h5>
+                  <h6 class="card-title">{{course.name.title}} </h6>
+                  <p class="card-text">{{course.category.title}}</p>
+                  <a href="/course/{{course.pk}}" class="btn btn-primary">Go to Course</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container pt-5">
+    <h4>{{teacher.name}}'s Students:</h4>
+    {% for code, enrollments in enrollments_list.items %}
+        <div class="row d-flex mt-5 p-2 list-group-item-primary justify-content-around">
+            <h5>{{code}}</h5>
+        </div>
+        {% for enrollment in enrollments %}
+        <div class="row d-flex mt-5">
+            <div class="col-sm-2 media">
+                <a class="align-self-center" href="/student/home/{{enrollment.student.pk}}"><img class="img-thumbnail" src="/images/{{enrollment.student.photo}}" ></a>
+            </div>
+            <div class="col">
+                <h4>{{enrollment.student.user_name.title}}</h4>
+                <h6>{{enrollment.student.name.title}} {{enrollment.student.last_name.title}} </h6>
+                <br>
+                <a class="btn btn-danger" href="/enrollment/{{enrollment.pk}}/unenroll" role="button">Unenroll</a>
+            </div>
+        </div>
+        {%  endfor %}
+    {%  endfor %}
+</div>
+{% endblock %}

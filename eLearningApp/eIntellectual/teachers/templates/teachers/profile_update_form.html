@@ -1,0 +1,31 @@
+<!-- Code Reference 
+    # University of London Advance Web Development module
+    # Lectures and Labs presented by Dr Daniel Buchan -->
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container-fluid p-5">
+    <h3>Edit Profile:</h3>
+    <br>
+    <!-- the following form was from the reference above  -->
+    <div class="list-inline">
+        <p class="list-inline-item">Username: </p><h4 class="list-inline-item">{{teacher.user_name.title}}</h4>
+    </div>
+    <div class="list-inline">
+        <p class="list-inline-item">Account Number: </p><h6 class="list-inline-item">{{teacher.account_number.upper}}</h6>
+    </div>
+    <div class="list-inline">
+        <p class="list-inline-item">Start Date: </p><p class="list-inline-item">{{teacher.start_date.date}}</p>
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <br>
+        <input class="col-2 btn btn-success" type="submit" value="Update"> 
+        <a class="col-2 btn btn-outline-secondary ml-4" href="/teacher/profile" role="button">Cancel</a>
+    </form> 
+</div>
+
+{% endblock %}

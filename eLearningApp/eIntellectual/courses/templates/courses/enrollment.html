@@ -1,0 +1,48 @@
+<!-- Code Refernce  -->
+ <!-- https://github.com/sibtc/django-multiple-user-types-example/blob/master/django_school/classroom/templates/classroom/students/interests_form.html -->
+
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <!-- displays information obout the course -->
+    <div class="row d-flex mt-5">
+        <div class="col-sm-3 media">
+            <a class="align-self-top"  href="../../course/{{course.pk}}/"><img class="img-thumbnail" src="/images/{{course.image}}"  alt="{{course.name}}"></a>
+        </div>
+        <div class="col">
+            <h4>{{course.name.title}}</h4>
+            <p>{{course.code.upper}}</p>
+            <p>{{course.category.title}}</p>
+            <h5>Created By {{course.teacher.name}}</h5>
+            <p>{{course.description}}</p>
+        </div>
+    </div>
+    {% if not enrollment_exist %}
+    <!-- Display information about enrollment -->
+    <div class="m-5 justify-content-around">
+        {% if enrolled %}
+            <h5>You are succesfully enroll in {{course.name.title}}.</h5>
+            <a class="btn btn-primary ml-4" href="/student/enrollments" role="button">Go To My Courses</a>
+        {% else %}
+            <h5>Are you sure you want to enroll in {{course.name.title}}?</h5><br>
+            <!-- the following form provaence is from the reference mentioned above -->
+             <!-- dispalys the enrollemnt form -->
+            <form method="post">
+                {% csrf_token %}
+                {{enrollment_form.as_p}}
+                <div class="row">
+                    <button tupe="submit" class="col-2 btn btn-success ml-4"  role="button">Yes</button>
+                    <a class="col-2 btn btn-outline-secondary ml-4" href="/course/{{course.pk}}" role="button">Cancel</a>
+                </div>
+            </form>
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="m-5 justify-content-around">
+        <a class="btn btn-primary ml-4" href="/course/{{course.pk}}" role="button">Go Course</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
